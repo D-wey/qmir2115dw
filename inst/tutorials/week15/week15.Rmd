@@ -22,16 +22,16 @@ data(df_learnr15)
 
 ## Introduction
 
-Welcome to the last tutorial of the Quantitative Methods in International Relations course! Today we will replicate some of the results of Sarah Hobolt\'s(2016) paper: \"The Brexit vote: a divided nation, a divided continen\". As always, we will start with some knowledge questions and then continue with some coding-exercises. Have fun!
+Welcome to the last tutorial of the Quantitative Methods in International Relations course! Today we will replicate some of the results of Sarah Hobolt\'s (2016) paper: \"The Brexit vote: a divided nation, a divided continent\". As always, we will start with some knowledge questions and then continue with some coding-exercises. Have fun!
 
 ## Knowledge Questions
 
 ```{r q1, echo = FALSE}
 question("Why is it useful to rely on logstic regression models for our referendum vote variable?",
   answer("Because our dependent variable is binary and our predicted values may fall outside the logical boundaries of 0 and 1 if we use OLS.", correct = T),
-  answer("Because the variance of our dependent variable is not large enough"),
+  answer("Because the variance of our dependent variable is not large enough."),
   answer("Because we cannot calculate a mean for our dependent variable."),
-  answer("Because the standard deviation of our dependent variable equals its mean"),
+  answer("Because the standard deviation of our dependent variable equals its mean."),
   random_answer_order = TRUE,
   allow_retry = T,
   incorrect = "Hint: Remember what we use OLS for and what our regression line would predict for different kinds of variables."
@@ -52,32 +52,33 @@ question("Why do we need a link function for logistic regression analyses?",
 
 ## Coding Exercises
 
-Now let\'s have a look at the Brexit referendum data again (the data is stored as `df_learnr15`). You will reproduce Table 2 from Hobolt (2016, p.1268). What is the mean age of females (`female`) in the data set? Round to two decimals if necessary.
+Now let us have a look at the Brexit referendum data again (the data is stored as `df_learnr15`). We want to compare some characteristics of the participants in the survey. In a first step we want you to calculate the aver age of men in the data set and the average age of women in the data set. Then subtract the average age of women from that of the men. What is the difference in their ages?
+
+
+
 
 ```{r exercise1, exercise = TRUE}
 
 ```
 
 ```{r q3, echo = FALSE}
-question_text("What is the mean age of females in the data set? Round to two decimal if necessary.",
-#  answer(49.7, correct = T),
-  answer("49.73", correct = T),
+question_text("What is the age difference between men and women? Please round to two decimals",
+  answer("1.7", correct = T),
+  answer("1.70", correct = T),
   allow_retry = TRUE,
   incorrect = "Hint: Select the relevant observations with 'filter()' and use the 'mean()' command to calculate the average."
 )
 ```
-
-Now calculate the median degree of European Identity (`EuropeanIdentity`) in the data set among males?
+"
+Now calculate the mean age of voters who intend to vote "leave" (`LeaveVote == 1`) and those who intend to vote "remain" (`LeaveVote == 0`).
 
 ```{r exercise2, exercise = TRUE}
 
 ```
 
 ```{r q4, echo = FALSE}
-question_text("What is the median degree of European Identity (`EuropeanIdentity`) in the data set among males?",
-  answer("Four", correct = T),
-  answer("four", correct = T),
-  answer("4", correct = T),
+question_text("What is the age difference between leave and remain voters? Please round to two decimals.",
+  answer("8.38", correct = T),
   allow_retry = TRUE,
   incorrect = "Hint: Select the relevant observations with `filter()` and use the `median()` command to calculate the median."
 )
@@ -90,7 +91,7 @@ Now calculate a logit regression trying to explain `LeaveVote` with `age`, `fema
 ```
 
 ```{r q5, echo = FALSE}
-question_text("What is the coefficient for `EuropeanIdentity`? Rond to four decimals.",
+question_text("What is the coefficient for `EuropeanIdentity`? Rond to two decimals.",
   answer("-0.80", correct = T),
   allow_retry = TRUE,
   incorrect = "Hint: Consider what we did in the lab. The regression command is similar, just add the new independent variables and don't include some that we do not use anymore."
@@ -107,7 +108,18 @@ question("What does the coefficient for `EuropeanIdentity` tell us?",
 )
 ```
 
-Now, let\'s calculate predicted probabilities. Calculate the predicted probability of voting `Leave` for individuals with the highest value for `EuropeanIdentity`, holding all other variables at their means or medians. What is the predicted probability to vote `Leave` for such voters? Round to two decimals.
+## Prediction
+
+Now, let\'s calculate predicted probabilities. You can use the model below!
+```{r , eval = F, echo }
+model <- glm(LeaveVote ~ age + female + edlevel + hhincome + EuropeanIdentity +
+               EnglishIdentity + BritishIdentity,
+             data = df_learnr15,
+             family = binomial(link = "logit")) 
+```
+
+Calculate the predicted probability of voting `Leave` for individuals with the highest value for `EuropeanIdentity`, holding all other variables at their means or medians. Remember, that the variables (apart from the `age`-variable) are questionnaire variables. Though they are numeric, the answer options have been categorical. What is the predicted probability to vote `Leave` for such voters? Round to two decimals.
+
 
 ```{r exercise4, exercise = TRUE}
 
