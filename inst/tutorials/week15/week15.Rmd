@@ -23,16 +23,16 @@ data(df_learnr15)
 
 ## Introduction
 
-Welcome to the last tutorial of the Quantitative Methods in International Relations course! Today we will replicate some of the results of Sarah Hobolt\'s (2016) paper: \"The Brexit vote: a divided nation, a divided continent\". We will use different survey-items to test hypotheses about the decision to vote "Leave" in the Brexit referendum. These variables are **categorical**, except for the `age`-variable which is numeric. 
+Welcome to the last tutorial of the Quantitative Methods in International Relations course! Today we will replicate some of the results of Sarah Hobolt\'s (2016) paper: \"The Brexit vote: a divided nation, a divided continent\". We will use different survey items to test hypotheses about the decision to vote "Leave" in the Brexit referendum. These variables are **categorical**, except for the `age`-variable which is numeric. 
 
-As always, we will start with some knowledge questions and then continue with some coding-exercises. Have fun!
+As always, we will start with some knowledge questions and then continue with some coding exercises. Have fun!
 
 
 
 ## Knowledge Questions
 
 ```{r q1, echo = FALSE}
-question("Why is it useful to rely on logstic regression models for our referendum vote variable?",
+question("Why is it useful to rely on logistic regression models for our referendum vote variable?",
   answer("Because our dependent variable is binary and our predicted values may fall outside the logical boundaries of 0 and 1 if we use OLS.", correct = T),
   answer("Because the variance of our dependent variable is not large enough."),
   answer("Because we cannot calculate a mean for our dependent variable."),
@@ -47,7 +47,7 @@ question("Why is it useful to rely on logstic regression models for our referend
 question("Why do we need a link function for logistic regression analyses?",
   answer("Because we want to predict probabilities that only range between 0 and 1.", correct = T),
   answer("Because the variance needs to be logged in order to obtain predictions."),
-  answer("Because logistic regression models analyse the responses of people participating in surveys.", message = "They do sometimes, but that does not affect the need for a link-function."),
+  answer("Because logistic regression models analyze the responses of people participating in surveys.", message = "They do sometimes, but that does not affect the need for a link-function."),
   answer("Because that makes the derivation of the maximum likelihood easier."),
   random_answer_order = TRUE,
   allow_retry = T,
@@ -57,7 +57,7 @@ question("Why do we need a link function for logistic regression analyses?",
 
 ## Coding Exercises
 
-Now let us have a look at the Brexit referendum data again (the data is stored as `df_learnr15`). We want to compare some characteristics of the participants in the survey. In a first step we want you to calculate the aver age of men in the data set and the average age of women in the data set. Then subtract the average age of women from that of the men. What is the difference in their ages?
+Now let us have a look at the Brexit referendum data again (the data is stored as `df_learnr15`). We want to compare some characteristics of the participants in the survey. In a first step, we want you to calculate the average of men in the data set and the average age of women in the data set. Then subtract the average age of women from that of the men. What is the difference in their ages?
 
 
 
@@ -134,7 +134,7 @@ Calculate the predicted probability and the surrounding uncertainties of voting 
 question_text("  What is the predicted probability to vote `Leave` for such voters? Round to two decimals.",
   answer("0.06", correct = T),
   allow_retry = TRUE,
-  incorrect = "Hint: Start with the lab code and extend the scenarios to the new variables we included. In case you received a prediction of 0.049/0.05, make sure that you set the qurstionnaire items to their medians."
+  incorrect = "Hint: Start with the lab code and extend the scenarios to the new variables we included. In case you received a prediction of 0.049/0.05, make sure that you set the questionnaire items to their medians."
 )
 ```
 
@@ -145,10 +145,10 @@ Now, calculate predicted probabilities and the surrounding uncertainties, this t
 ```
 
 ```{r q8, echo = FALSE}
-question_text("What is the predicted probabiliy for those individuals? Again, round to two decimals.",
+question_text("What is the predicted probability for those individuals? Again, round to two decimals.",
   answer("0.88", correct = T),
   allow_retry = TRUE,
-  incorrect = "Hint: Same as before, only the value for `EuropeanIdentity` has to be changed. In case you received a prediction of 0.86, make sure that you set the qurstionnaire items to their medians."
+  incorrect = "Hint: Same as before, only the value for `EuropeanIdentity` has to be changed. In case you received a prediction of 0.86, make sure that you set the questionnaire items to their medians."
 )
 ```
 
